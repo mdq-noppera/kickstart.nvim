@@ -535,7 +535,15 @@ require('lazy').setup({
         -- clangd = {},
         gopls = {},
         pyright = {},
-        rust_analyzer = {},
+        rust_analyzer = {
+          settings = {
+            ['rust-analyzer'] = {
+              checkOnSave = {
+                command = 'clippy',
+              },
+            },
+          },
+        },
         tsserver = {},
         -- svelte = {},
         -- -- svelte_language_server = {},
