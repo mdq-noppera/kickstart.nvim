@@ -536,6 +536,10 @@ require('lazy').setup({
         gopls = {},
         pyright = {},
         rust_analyzer = {},
+        tsserver = {},
+        -- svelte = {},
+        -- -- svelte_language_server = {},
+
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -599,6 +603,15 @@ require('lazy').setup({
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
+        },
+        ensure_installed = {
+          'clangd',
+          'gopls',
+          'pyright',
+          'rust_analyzer',
+          'tsserver',
+          'svelte',
+          'lua_ls',
         },
       }
     end,
@@ -682,7 +695,7 @@ require('lazy').setup({
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          ['<C-y>'] = cmp.mapping.confirm { select = true },
+          ['<Cr>'] = cmp.mapping.confirm { select = true },
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
@@ -785,7 +798,7 @@ require('lazy').setup({
 
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc' },
+        ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'typescript', 'javascript', 'svelte' },
         -- Autoinstall languages that are not installed
         auto_install = true,
         highlight = { enable = true },
