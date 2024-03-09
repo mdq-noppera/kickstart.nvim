@@ -90,6 +90,15 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- custom switching between windows in terminal mode
+local i = 1
+while i <= 9 do
+  vim.api.nvim_set_keymap('n', '<Leader>' .. i, ':' .. i .. 'wincmd w<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('t', '<Leader>' .. i, '<C-\\><C-n>:' .. i .. 'wincmd w<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('t', '<C-w>' .. i, '<C-\\><C-n>:' .. i .. 'wincmd w<CR>', { noremap = true, silent = true })
+  i = i + 1
+end
+--
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = false
 
@@ -150,6 +159,9 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- custom terminal
+vim.g.terminal = 'alacritty'
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
